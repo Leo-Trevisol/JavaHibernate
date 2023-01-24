@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<hibernate-mapping>
+
+<class name="bean.Aluno" table="alunos">
+<id
+name="alu_codigo" column= "alu_codigo" type="integer">
+<property name="alu_nome" column = "alu_nome" type="String"/>
+<property name="alu_cidade" column = "alu_cidade" type="String"/>
+<property name="alu_fone" column = "alu_fone" type="String"/>
+<property name="alu_curso" column = "alu_curso" type="String"/>
+
+</id>
+</class>
+
+</hibernate-mapping>
