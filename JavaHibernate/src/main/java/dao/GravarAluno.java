@@ -18,11 +18,11 @@ public class GravarAluno {
 	    		transaction = (Transaction) session.beginTransaction();
 	    		
 			Aluno aluno = new Aluno();
-			aluno.setAlu_codigo(1);
-			aluno.setAlu_nome("Leozin");
-			aluno.setAlu_fone("549840000");
-			aluno.setAlu_cidade("Caxias");
-			aluno.setAlu_curso("Hibernate");
+			aluno.setAlu_codigo(2);
+			aluno.setAlu_nome("Leozi1n");
+			aluno.setAlu_fone("5498401000");
+			aluno.setAlu_cidade("Caxi1as");
+			aluno.setAlu_curso("Hibern1ate");
 			
 			 session.persist(aluno);
 	            

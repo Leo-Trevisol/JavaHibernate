@@ -63,6 +63,12 @@ public class Aluno {
 	public void setAlu_curso(String alu_curso) {
 		this.alu_curso = alu_curso;
 	}
+
+	@Override
+	public String toString() {
+		return "Aluno [alu_codigo=" + alu_codigo + ", alu_nome=" + alu_nome + ", alu_cidade=" + alu_cidade
+				+ ", alu_fone=" + alu_fone + ", alu_curso=" + alu_curso + "]";
+	}
 	
 	
 
