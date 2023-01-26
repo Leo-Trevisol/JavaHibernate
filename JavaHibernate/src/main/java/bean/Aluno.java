@@ -1,12 +1,24 @@
 package bean;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
+@Entity
+@Table(name = "alunos")
 public class Aluno {
 	
+	@Column
+	@Id
 	private int alu_codigo;
+	@Column
 	private String alu_nome;
+	@Column
 	private String alu_cidade;
+	@Column
 	private String alu_fone;
+	@Column
 	private String alu_curso;
 	
 	public Aluno() {
