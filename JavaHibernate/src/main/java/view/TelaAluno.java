@@ -24,6 +24,8 @@ import bean.Aluno;
 import conexao.ConexaoBD;
 
 import javax.swing.JScrollPane;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class TelaAluno extends JFrame {
 
@@ -72,7 +74,7 @@ public class TelaAluno extends JFrame {
 
 		JLabel lbnome = new JLabel("Nome: ");
 		lbnome.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lbnome.setBounds(46, 71, 95, 32);
+		lbnome.setBounds(308, 29, 95, 32);
 		contentPane.add(lbnome);
 
 		JLabel lbcodigo = new JLabel("Codigo");
@@ -82,12 +84,12 @@ public class TelaAluno extends JFrame {
 
 		JLabel lbcidade = new JLabel("Cidade:");
 		lbcidade.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lbcidade.setBounds(295, 29, 95, 32);
+		lbcidade.setBounds(46, 71, 95, 32);
 		contentPane.add(lbcidade);
 
 		JLabel lbfone = new JLabel("Fone:");
 		lbfone.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lbfone.setBounds(339, 71, 95, 32);
+		lbfone.setBounds(361, 71, 95, 32);
 		contentPane.add(lbfone);
 
 		JLabel lbcurso = new JLabel("Curso:");
@@ -96,23 +98,23 @@ public class TelaAluno extends JFrame {
 		contentPane.add(lbcurso);
 
 		txtcodigo = new JTextField();
-		txtcodigo.setBounds(117, 29, 168, 30);
+		txtcodigo.setBounds(123, 35, 168, 30);
 		contentPane.add(txtcodigo);
 		txtcodigo.setColumns(10);
 
 		txtnome = new JTextField();
 		txtnome.setColumns(10);
-		txtnome.setBounds(117, 71, 214, 30);
+		txtnome.setBounds(371, 29, 214, 30);
 		contentPane.add(txtnome);
 
 		txtfone = new JTextField();
 		txtfone.setColumns(10);
-		txtfone.setBounds(395, 71, 200, 30);
+		txtfone.setBounds(411, 77, 200, 30);
 		contentPane.add(txtfone);
 
 		txtcidade = new JTextField();
 		txtcidade.setColumns(10);
-		txtcidade.setBounds(371, 29, 224, 30);
+		txtcidade.setBounds(117, 77, 224, 30);
 		contentPane.add(txtcidade);
 
 		txtcurso = new JTextField();
@@ -121,10 +123,51 @@ public class TelaAluno extends JFrame {
 		contentPane.add(txtcurso);
 
 		JButton btnovo = new JButton("Novo");
+		
+		btnovo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				txtcodigo.setText( "");
+				txtnome.setText("");
+				txtcidade.setText( "");
+				txtfone.setText("");
+				txtcurso.setText( "");
+			}
+		});
+		
+		
 		btnovo.setBounds(46, 177, 100, 37);
 		contentPane.add(btnovo);
 
 		JButton btsalvar = new JButton("Salvar");
+		btsalvar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Transaction transaction = null;
+		    	try {
+		    		Session session = ConexaoBD.getSessionFactory().openSession();
+		    		transaction = (Transaction) session.beginTransaction();
+		    		
+				Aluno aluno = new Aluno();
+				aluno.setAlu_codigo(Integer.parseInt(txtcodigo.getText()));
+				aluno.setAlu_nome(txtnome.getText());
+				aluno.setAlu_fone(txtfone.getText());
+				aluno.setAlu_cidade(txtcidade.getText());
+				aluno.setAlu_curso(txtcurso.getText());
+				
+				 session.persist(aluno);
+		            
+		          
+				 transaction.commit();
+				
+				session.clear();
+				
+			}catch(Exception f) {
+				System.out.println("Erro ao cadastrar aluno: " + f.getMessage());
+			}
+		    	
+		    	povoarTable();
+			
+		}
+		});
 		btsalvar.setBounds(191, 177, 100, 37);
 		contentPane.add(btsalvar);
 
@@ -154,6 +197,9 @@ public class TelaAluno extends JFrame {
 
 		scrollPane.setViewportView(table);
 		povoarTable();
+		
+		
+		
 	}
 
 	public void povoarTable() {
@@ -164,6 +210,7 @@ public class TelaAluno extends JFrame {
 		table.getColumnModel().getColumn(4).setPreferredWidth(90);
 		
 		DefaultTableModel model =  (DefaultTableModel) table.getModel();
+		
 		model.setNumRows(0);
 		try {
 			Transaction transaction = null;
@@ -176,15 +223,40 @@ public class TelaAluno extends JFrame {
 			
 			int sizeList = lstAlunos.size();
 			
+			if(model.getRowCount() > 0 ) {
 			for(int i = 0; i <sizeList; i++) {
+				model.removeRow(i);
+			}
+			}
+			
+			for(int i = 0; i <sizeList; i++) {
+				
 				Aluno aluno = lstAlunos.get(i);
 				model.addRow(new Object[]{aluno.getAlu_codigo(), aluno.getAlu_nome(), aluno.getAlu_cidade(), aluno.getAlu_fone(), aluno.getAlu_curso()});
+				if(i == 0) {
+					txtcodigo.setText(aluno.getAlu_codigo() + "");
+					txtnome.setText(aluno.getAlu_nome() + "");
+					txtcidade.setText(aluno.getAlu_cidade() + "");
+					txtfone.setText(aluno.getAlu_fone() + "");
+					txtcurso.setText(aluno.getAlu_curso() + "");
+				}
 			}
 		}catch(Exception e ) {
 			System.out.println("Erro ao popular table " + e.getMessage());
 			
 		}
 		
+	}
+	
+	private void getLinhaSeleciona(java.awt.event.MouseEvent evt) {
+		int linha = table.getSelectedRow();
+		txtcodigo.setText(table.getValueAt(linha,0).toString());
+		txtnome.setText(table.getValueAt(linha,1).toString());
+		txtcidade.setText(table.getValueAt(linha,2).toString());
+		txtfone.setText(table.getValueAt(linha,3).toString());
+		txtcurso.setText(table.getValueAt(linha,4).toString());
+
+
 	}
 
 }
