@@ -18,7 +18,7 @@ public class GravarAluno {
 	    		transaction = (Transaction) session.beginTransaction();
 	    		
 			Aluno aluno = new Aluno();
-			aluno.setAlu_codigo(2);
+		//	aluno.setAlu_codigo(2);
 			aluno.setAlu_nome("Leozi1n");
 			aluno.setAlu_fone("5498401000");
 			aluno.setAlu_cidade("Caxi1as");

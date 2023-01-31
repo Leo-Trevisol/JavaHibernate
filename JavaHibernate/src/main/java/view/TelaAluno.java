@@ -107,6 +107,7 @@ public class TelaAluno extends JFrame {
 		contentPane.add(lbcurso);
 
 		txtcodigo = new JTextField();
+		txtcodigo.setEnabled(false);
 		txtcodigo.setBounds(123, 35, 168, 30);
 		contentPane.add(txtcodigo);
 		txtcodigo.setColumns(10);
@@ -154,7 +155,6 @@ public class TelaAluno extends JFrame {
 				
 		    		
 				Aluno aluno = new Aluno();
-				aluno.setAlu_codigo(Integer.parseInt(txtcodigo.getText()));
 				aluno.setAlu_nome(txtnome.getText());
 				aluno.setAlu_fone(txtfone.getText());
 				aluno.setAlu_cidade(txtcidade.getText());
@@ -243,8 +243,6 @@ public class TelaAluno extends JFrame {
 			}
 			}
 		});
-
-		table.setEnabled(false);
 
 		table.setModel(new DefaultTableModel(
 				new Object[][] { { null, null, null, null, null }, { null, null, null, null, null },
