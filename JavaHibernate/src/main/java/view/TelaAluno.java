@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -22,6 +23,7 @@ import org.hibernate.Transaction;
 
 import bean.Aluno;
 import conexao.ConexaoBD;
+import dao.AlunoDao;
 
 import javax.swing.JScrollPane;
 import java.awt.event.ActionListener;
@@ -46,6 +48,7 @@ public class TelaAluno extends JFrame {
 	Transaction transaction = null;
 	List<Aluno> lstAlunos = new ArrayList<>();
 	int posiatual = 0;
+	AlunoDao alunodao = new AlunoDao();
 
 	/**
 	 * Launch the application.
@@ -129,6 +132,7 @@ public class TelaAluno extends JFrame {
 		contentPane.add(txtcurso);
 
 		JButton btnovo = new JButton("Novo");
+		table.setSelectionBackground(Color.yellow);
 		
 		btnovo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -147,12 +151,7 @@ public class TelaAluno extends JFrame {
 		JButton btsalvar = new JButton("Salvar");
 		btsalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Transaction transaction = null;
-		    	try {
-		    		if(!session.isOpen())
-					{
-						transaction = (Transaction) session.beginTransaction();
-					}
+				
 		    		
 				Aluno aluno = new Aluno();
 				aluno.setAlu_codigo(Integer.parseInt(txtcodigo.getText()));
@@ -161,17 +160,7 @@ public class TelaAluno extends JFrame {
 				aluno.setAlu_cidade(txtcidade.getText());
 				aluno.setAlu_curso(txtcurso.getText());
 				
-				 session.persist(aluno);
-		            
-		          
-				 transaction.commit();
-				
-				session.clear();
-				
-			}catch(Exception f) {
-				System.out.println("Erro ao cadastrar aluno: " + f.getMessage());
-			}
-		    	
+				alunodao.insere(aluno);
 		    	povoarTable();
 			
 		}
@@ -182,12 +171,7 @@ public class TelaAluno extends JFrame {
 		JButton btalterar = new JButton("Alterar");
 		btalterar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Transaction transaction = null;
-		    	try {
-		    		if(!session.isOpen())
-					{
-						transaction = (Transaction) session.beginTransaction();
-					}
+			
 		    		
 				Aluno aluno = new Aluno();
 				aluno.setAlu_codigo(Integer.parseInt(txtcodigo.getText()));
@@ -196,14 +180,7 @@ public class TelaAluno extends JFrame {
 				aluno.setAlu_cidade(txtcidade.getText());
 				aluno.setAlu_curso(txtcurso.getText());
 				
-				 session.update(aluno);
-				 transaction.commit();
-				
-				session.clear();
-				
-			}catch(Exception f) {
-				System.out.println("Erro ao editar aluno: " + f.getMessage());
-			}
+				alunodao.atualiza(aluno);
 		    	
 		    	povoarTable();
 				
@@ -215,20 +192,13 @@ public class TelaAluno extends JFrame {
 		JButton btexcluir = new JButton("Excluir");
 		btexcluir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				try {
-						transaction = (Transaction) session.beginTransaction();
+				
 					
 					Aluno aluno = new Aluno();
 					aluno.setAlu_codigo(Integer.parseInt(txtcodigo.getText()));
-					 session.remove(aluno);
-					 transaction.commit();
-					
-					session.clear();
-
-				} catch (Exception f) {
-					System.out.println("Erro ao excluir aluno: " +f.getMessage());
-				}
-				
+					alunodao.deleta(aluno);
+					posiatual = 0;
+				atualizarFields();
 				povoarTable();
 			}
 		});
@@ -330,6 +300,7 @@ public class TelaAluno extends JFrame {
 		contentPane.add(avancartodos);
 		povoarTable();
 		
+		
 	}
 
 	public void povoarTable() {
@@ -364,6 +335,7 @@ public class TelaAluno extends JFrame {
 					txtcidade.setText(aluno.getAlu_cidade() + "");
 					txtfone.setText(aluno.getAlu_fone() + "");
 					txtcurso.setText(aluno.getAlu_curso() + "");
+					table.setRowSelectionInterval(0,0);
 				}
 			}
 		}catch(Exception e ) {
