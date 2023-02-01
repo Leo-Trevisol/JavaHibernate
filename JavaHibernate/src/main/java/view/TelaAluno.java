@@ -146,48 +146,30 @@ public class TelaAluno extends JFrame {
 		});
 		
 		
-		btnovo.setBounds(56, 155, 100, 37);
+		btnovo.setBounds(89, 155, 100, 37);
 		contentPane.add(btnovo);
 
-		JButton btsalvar = new JButton("Salvar");
-		btsalvar.addActionListener(new ActionListener() {
+		JButton btsalvaralterar = new JButton("Salvar ou Atualizar");
+		btsalvaralterar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-		    		
+		    		System.out.println(txtcodigo.getText());
 				Aluno aluno = new Aluno();
+				if(!(txtcodigo.getText().isEmpty())) {
+					aluno.setAlu_codigo(Integer.parseInt(txtcodigo.getText()));
+				}
 				aluno.setAlu_nome(txtnome.getText());
 				aluno.setAlu_fone(txtfone.getText());
 				aluno.setAlu_cidade(txtcidade.getText());
 				aluno.setAlu_curso(txtcurso.getText());
 				
-				alunodao.insere(aluno);
+				alunodao.saveOrUpdate(aluno);
 		    	povoarTable();
 			
 		}
 		});
-		btsalvar.setBounds(184, 155, 100, 37);
-		contentPane.add(btsalvar);
-
-		JButton btalterar = new JButton("Alterar");
-		btalterar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			
-		    		
-				Aluno aluno = new Aluno();
-				aluno.setAlu_codigo(Integer.parseInt(txtcodigo.getText()));
-				aluno.setAlu_nome(txtnome.getText());
-				aluno.setAlu_fone(txtfone.getText());
-				aluno.setAlu_cidade(txtcidade.getText());
-				aluno.setAlu_curso(txtcurso.getText());
-				
-				alunodao.atualiza(aluno);
-		    	
-		    	povoarTable();
-				
-			}
-		});
-		btalterar.setBounds(331, 155, 100, 37);
-		contentPane.add(btalterar);
+		btsalvaralterar.setBounds(234, 155, 157, 37);
+		contentPane.add(btsalvaralterar);
 
 		JButton btexcluir = new JButton("Excluir");
 		btexcluir.addActionListener(new ActionListener() {
@@ -202,7 +184,7 @@ public class TelaAluno extends JFrame {
 				povoarTable();
 			}
 		});
-		btexcluir.setBounds(457, 155, 100, 37);
+		btexcluir.setBounds(447, 155, 100, 37);
 		contentPane.add(btexcluir);
 
 		JList list = new JList();

@@ -76,6 +76,31 @@ public class AlunoDao {
             e.printStackTrace();
     	}
 	}
+	
+	public void saveOrUpdate(Object objeto) {
+		Transaction transaction = null;
+    	try {
+    		org.hibernate.Session session = ConexaoBD.getSessionFactory().openSession();
+    		transaction = (Transaction) session.beginTransaction();
+    		
+            session.saveOrUpdate(objeto);
+            
+            transaction.commit();
+    	}
+    	catch(Exception e) {
+    		if (transaction != null) {
+                try {
+					transaction.rollback();
+				} catch (IllegalStateException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+            }
+            e.printStackTrace();
+    	}
+    	
+		
+	}
 
 
 }
