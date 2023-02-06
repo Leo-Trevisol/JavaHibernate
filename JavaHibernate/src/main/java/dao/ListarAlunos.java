@@ -20,7 +20,7 @@ public class ListarAlunos {
 			transaction = (Transaction) session.beginTransaction();
 			
 			List<Aluno> lstAlunos = new ArrayList<>();
-			lstAlunos = session.createQuery("From Aluno").list();
+			lstAlunos = session.createQuery("From Aluno order by alu_nome").list();
 			
 			int sizeList = lstAlunos.size();
 			

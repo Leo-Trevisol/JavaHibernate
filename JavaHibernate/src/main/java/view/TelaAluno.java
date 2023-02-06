@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JTextField;
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.JList;
@@ -30,6 +31,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
+import javax.swing.JRadioButton;
 
 public class TelaAluno extends JFrame {
 
@@ -49,6 +51,9 @@ public class TelaAluno extends JFrame {
 	List<Aluno> lstAlunos = new ArrayList<>();
 	int posiatual = 0;
 	AlunoDao alunodao = new AlunoDao();
+	String filtro = " from Aluno ";
+	String orderby = " order by alu_codigo ";
+	private JTextField txtpesquisar;
 
 	/**
 	 * Launch the application.
@@ -72,7 +77,7 @@ public class TelaAluno extends JFrame {
 	public TelaAluno() {
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 635, 431);
+		setBounds(100, 100, 695, 482);
 		contentPane = new JPanel(null);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -83,53 +88,53 @@ public class TelaAluno extends JFrame {
 
 		JLabel lbnome = new JLabel("Nome: ");
 		lbnome.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lbnome.setBounds(308, 29, 95, 32);
+		lbnome.setBounds(338, 91, 66, 32);
 		contentPane.add(lbnome);
 
 		JLabel lbcodigo = new JLabel("Codigo");
 		lbcodigo.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lbcodigo.setBounds(46, 29, 95, 32);
+		lbcodigo.setBounds(89, 91, 65, 32);
 		contentPane.add(lbcodigo);
 
 		JLabel lbcidade = new JLabel("Cidade:");
 		lbcidade.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lbcidade.setBounds(46, 71, 95, 32);
+		lbcidade.setBounds(89, 133, 95, 32);
 		contentPane.add(lbcidade);
 
 		JLabel lbfone = new JLabel("Fone:");
 		lbfone.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lbfone.setBounds(361, 71, 95, 32);
+		lbfone.setBounds(402, 133, 95, 32);
 		contentPane.add(lbfone);
 
 		JLabel lbcurso = new JLabel("Curso:");
 		lbcurso.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lbcurso.setBounds(46, 113, 95, 32);
+		lbcurso.setBounds(89, 173, 65, 32);
 		contentPane.add(lbcurso);
 
 		txtcodigo = new JTextField();
 		txtcodigo.setEnabled(false);
-		txtcodigo.setBounds(123, 35, 168, 30);
+		txtcodigo.setBounds(160, 97, 168, 30);
 		contentPane.add(txtcodigo);
 		txtcodigo.setColumns(10);
 
 		txtnome = new JTextField();
 		txtnome.setColumns(10);
-		txtnome.setBounds(371, 29, 214, 30);
+		txtnome.setBounds(414, 97, 240, 30);
 		contentPane.add(txtnome);
 
 		txtfone = new JTextField();
 		txtfone.setColumns(10);
-		txtfone.setBounds(411, 77, 200, 30);
+		txtfone.setBounds(458, 139, 196, 30);
 		contentPane.add(txtfone);
 
 		txtcidade = new JTextField();
 		txtcidade.setColumns(10);
-		txtcidade.setBounds(117, 77, 224, 30);
+		txtcidade.setBounds(160, 133, 224, 30);
 		contentPane.add(txtcidade);
 
 		txtcurso = new JTextField();
 		txtcurso.setColumns(10);
-		txtcurso.setBounds(117, 113, 214, 30);
+		txtcurso.setBounds(160, 173, 224, 30);
 		contentPane.add(txtcurso);
 
 		JButton btnovo = new JButton("Novo");
@@ -146,7 +151,7 @@ public class TelaAluno extends JFrame {
 		});
 		
 		
-		btnovo.setBounds(89, 155, 100, 37);
+		btnovo.setBounds(122, 226, 100, 37);
 		contentPane.add(btnovo);
 
 		JButton btsalvaralterar = new JButton("Salvar ou Atualizar");
@@ -168,7 +173,7 @@ public class TelaAluno extends JFrame {
 			
 		}
 		});
-		btsalvaralterar.setBounds(234, 155, 157, 37);
+		btsalvaralterar.setBounds(267, 226, 157, 37);
 		contentPane.add(btsalvaralterar);
 
 		JButton btexcluir = new JButton("Excluir");
@@ -184,16 +189,16 @@ public class TelaAluno extends JFrame {
 				povoarTable();
 			}
 		});
-		btexcluir.setBounds(447, 155, 100, 37);
+		btexcluir.setBounds(480, 226, 100, 37);
 		contentPane.add(btexcluir);
 
 		JList list = new JList();
-		list.setBounds(172, 291, 1, 1);
+		list.setBounds(205, 342, 1, 1);
 		contentPane.add(list);
 
 		JScrollPane scrollPane = new JScrollPane();
 	
-		scrollPane.setBounds(89, 222, 458, 122);
+		scrollPane.setBounds(122, 273, 458, 122);
 		contentPane.add(scrollPane);
 		table.addMouseListener(new MouseAdapter() {
 			@Override
@@ -241,7 +246,7 @@ public class TelaAluno extends JFrame {
 				atualizarFields();
 			}
 		});
-		voltartodos.setBounds(99, 363, 85, 21);
+		voltartodos.setBounds(132, 414, 85, 21);
 		contentPane.add(voltartodos);
 		
 		JButton voltarum = new JButton("<<");
@@ -253,7 +258,7 @@ public class TelaAluno extends JFrame {
 				}
 			}
 		});
-		voltarum.setBounds(220, 363, 85, 21);
+		voltarum.setBounds(253, 414, 85, 21);
 		contentPane.add(voltarum);
 		
 		JButton avancarum = new JButton(">>");
@@ -266,7 +271,7 @@ public class TelaAluno extends JFrame {
 				
 			}
 		});
-		avancarum.setBounds(334, 363, 85, 21);
+		avancarum.setBounds(367, 414, 85, 21);
 		contentPane.add(avancarum);
 		
 		JButton avancartodos = new JButton(">>|");
@@ -276,11 +281,72 @@ public class TelaAluno extends JFrame {
 				atualizarFields();
 			}
 		});
-		avancartodos.setBounds(446, 363, 85, 21);
+		avancartodos.setBounds(479, 414, 85, 21);
 		contentPane.add(avancartodos);
+		
+		JLabel lbpesquisar = new JLabel("Pesquisar aluno:");
+		lbpesquisar.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lbpesquisar.setBounds(78, 22, 175, 32);
+		contentPane.add(lbpesquisar);
+		
+		txtpesquisar = new JTextField();
+		txtpesquisar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				filtro = "from Aluno where upper(alu_nome) like'" + txtpesquisar.getText().toUpperCase() + "%'";
+				
+				if(!txtpesquisar.getText().isEmpty()) {
+				 char c = txtpesquisar.getText().charAt(0);
+				if (Character.isDigit(c)) {
+				filtro += " or alu_codigo like '" +
+				Integer.parseInt(txtpesquisar.getText()) + "%' ";
+				}
+				}	
+				
+
+				povoarTable();
+			}
+		});
+		txtpesquisar.setColumns(10);
+		txtpesquisar.setBounds(236, 22, 183, 30);
+		contentPane.add(txtpesquisar);
+		
+		JPanel panel = new JPanel();
+		panel.setBackground(new Color(255, 255, 128));
+		panel.setForeground(new Color(0, 0, 0));
+		panel.setBounds(458, 22, 196, 60);
+		contentPane.add(panel);
+		panel.setLayout(null);
+		
+		JLabel lbordenar = new JLabel("Ordenar:");
+		lbordenar.setBounds(65, 5, 66, 17);
+		lbordenar.setFont(new Font("Tahoma", Font.BOLD, 14));
+		panel.add(lbordenar);
+		
+		JRadioButton rbnome = new JRadioButton("Nome");
+		rbnome.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				orderby = "order by alu_nome";
+				povoarTable();
+			}
+		});
+		rbnome.setBounds(21, 28, 66, 21);
+		panel.add(rbnome);
+		
+		JRadioButton rbcodigo = new JRadioButton("Codigo");
+		rbcodigo.setSelected(true);
+		ButtonGroup bg = new ButtonGroup();
+		bg.add(rbnome);
+		bg.add(rbcodigo);
+		rbcodigo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				orderby = "order by alu_codigo";
+				povoarTable();
+			}
+		});
+		rbcodigo.setBounds(111, 28, 66, 21);
+		panel.add(rbcodigo);
 		povoarTable();
-		
-		
 	}
 
 	public void povoarTable() {
@@ -295,7 +361,7 @@ public class TelaAluno extends JFrame {
 		model.setNumRows(0);
 		try {
 			
-			lstAlunos = session.createQuery("From Aluno").list();
+			lstAlunos = session.createQuery(filtro + orderby).list();
 			
 			int sizeList = lstAlunos.size();
 			
