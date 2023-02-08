@@ -29,6 +29,11 @@ public class ListarAlunos {
 				System.out.println(aluno.toString() );
 			}
 			
+			Aluno novo = (Aluno) session.get(Aluno.class, 1 );
+			String novonome = novo.getAlu_nome();
+			System.out.println("Nova maneira de pegar dados: " + novonome);
+			
+			
 			
 
 			session.clear();
