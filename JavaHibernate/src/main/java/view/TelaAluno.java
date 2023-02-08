@@ -32,6 +32,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
 import javax.swing.JRadioButton;
+import javax.swing.JCheckBox;
 
 public class TelaAluno extends JFrame {
 
@@ -54,6 +55,7 @@ public class TelaAluno extends JFrame {
 	String filtro = " from Aluno ";
 	String orderby = " order by alu_codigo ";
 	private JTextField txtpesquisar;
+	private JCheckBox checkiniciacom = new JCheckBox("Inicia com");
 
 	/**
 	 * Launch the application.
@@ -139,6 +141,11 @@ public class TelaAluno extends JFrame {
 
 		JButton btnovo = new JButton("Novo");
 		table.setSelectionBackground(Color.yellow);
+		
+		
+		checkiniciacom.setSelected(true);
+		checkiniciacom.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		checkiniciacom.setBounds(183, 60, 127, 21);
 		
 		btnovo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -293,7 +300,15 @@ public class TelaAluno extends JFrame {
 		txtpesquisar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				filtro = "from Aluno where upper(alu_nome) like'" + txtpesquisar.getText().toUpperCase() + "%'";
+				if(checkiniciacom.isSelected()) {
+					
+					filtro = "from Aluno where upper(alu_nome) like'" + txtpesquisar.getText().toUpperCase() + "%'";
+				}else {
+					filtro = "from Aluno where upper(alu_nome) like'%" + txtpesquisar.getText().toUpperCase() + "%'";
+
+				}
+				
+				
 				
 				if(!txtpesquisar.getText().isEmpty()) {
 				 char c = txtpesquisar.getText().charAt(0);
@@ -346,6 +361,9 @@ public class TelaAluno extends JFrame {
 		});
 		rbcodigo.setBounds(111, 28, 66, 21);
 		panel.add(rbcodigo);
+		
+		
+		contentPane.add(checkiniciacom);
 		povoarTable();
 	}
 
