@@ -1,10 +1,18 @@
 package bean;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Table;
 
 @Entity
@@ -23,6 +31,14 @@ public class Aluno {
 	private String alu_fone;
 	@Column
 	private String alu_curso;
+	
+	 @OneToMany(cascade=CascadeType.ALL)  
+     @JoinTable(name="telefones_alunos",  
+               joinColumns={@JoinColumn(name="tel_codaluno", 
+                referencedColumnName="alu_fone")},  
+               inverseJoinColumns={@JoinColumn(name="tel_codaluno", 
+                 referencedColumnName="alu_fone")}) 
+	private Set<String> telefones_aluno = new HashSet<String>();
 	
 	public Aluno() {
 	}
@@ -66,12 +82,22 @@ public class Aluno {
 	public void setAlu_curso(String alu_curso) {
 		this.alu_curso = alu_curso;
 	}
+	
+	public Set<String> getTelefones_aluno() {
+		return telefones_aluno;
+	}
+
+	public void setTelefones_aluno(Set<String> telefones_aluno) {
+		this.telefones_aluno = telefones_aluno;
+	}
 
 	@Override
 	public String toString() {
 		return "Aluno [alu_codigo=" + alu_codigo + ", alu_nome=" + alu_nome + ", alu_cidade=" + alu_cidade
 				+ ", alu_fone=" + alu_fone + ", alu_curso=" + alu_curso + "]";
 	}
+
+	
 	
 	
 

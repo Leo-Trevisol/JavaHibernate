@@ -20,6 +20,7 @@
         <property name="hibernate.current_session_context_class">org.hibernate.context.internal.ThreadLocalSessionContext</property>
  		
  	  <mapping class="bean.Aluno"/>
+ 	 
         <!-- Mapping With Model Class Containing Annotations -->
     </session-factory>
 </hibernate-configuration>

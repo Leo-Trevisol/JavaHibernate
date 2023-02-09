@@ -1,5 +1,8 @@
 package dao;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -23,6 +26,13 @@ public class GravarAluno {
 			aluno.setAlu_fone("5498401000");
 			aluno.setAlu_cidade("Caxi1as");
 			aluno.setAlu_curso("Hibern1ate");
+			
+			Set <String> tel = new HashSet<String>();
+			tel.add("000");
+			tel.add("111");
+			tel.add("222");
+			aluno.setTelefones_aluno(tel);
+			
 			
 			 session.persist(aluno);
 	            
