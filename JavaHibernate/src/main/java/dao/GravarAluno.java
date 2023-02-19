@@ -31,7 +31,7 @@ public class GravarAluno {
 			tel.add("000");
 			tel.add("111");
 			tel.add("222");
-			aluno.setTelefones_aluno(tel);
+			//aluno.setTelefones_aluno(tel);
 			
 			
 			 session.persist(aluno);

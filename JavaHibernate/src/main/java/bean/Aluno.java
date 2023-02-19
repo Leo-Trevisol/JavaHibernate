@@ -32,13 +32,8 @@ public class Aluno {
 	@Column
 	private String alu_curso;
 	
-	 @OneToMany(cascade=CascadeType.ALL)  
-     @JoinTable(name="telefones_alunos",  
-               joinColumns={@JoinColumn(name="tel_codaluno", 
-                referencedColumnName="alu_fone")},  
-               inverseJoinColumns={@JoinColumn(name="tel_codaluno", 
-                 referencedColumnName="alu_fone")}) 
-	private Set<String> telefones_aluno = new HashSet<String>();
+	
+	//private Set<String> telefones_aluno = new HashSet<String>();
 	
 	public Aluno() {
 	}
@@ -83,13 +78,13 @@ public class Aluno {
 		this.alu_curso = alu_curso;
 	}
 	
-	public Set<String> getTelefones_aluno() {
-		return telefones_aluno;
-	}
-
-	public void setTelefones_aluno(Set<String> telefones_aluno) {
-		this.telefones_aluno = telefones_aluno;
-	}
+//	public Set<String> getTelefones_aluno() {
+//		return telefones_aluno;
+//	}
+//
+//	public void setTelefones_aluno(Set<String> telefones_aluno) {
+//		this.telefones_aluno = telefones_aluno;
+//	}
 
 	@Override
 	public String toString() {
