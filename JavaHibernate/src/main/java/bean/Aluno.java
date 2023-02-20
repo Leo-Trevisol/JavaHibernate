@@ -1,5 +1,6 @@
 package bean;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -17,7 +18,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "alunos")
-public class Aluno {
+public class Aluno implements Serializable{
 	
 	
 	@Id
