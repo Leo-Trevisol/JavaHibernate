@@ -33,8 +33,11 @@ public class Aluno implements Serializable{
 	@Column
 	private String alu_curso;
 	
-	
-	//private Set<String> telefones_aluno = new HashSet<String>();
+//	
+//	@OneToMany
+//	@JoinTable(name="telefones_alunos", joinColumns=@JoinColumn(name="tel_codaluno"))
+//	@Column(name="tel_numero")
+//	private Set<String> telefones_aluno = new HashSet<String>();
 	
 	public Aluno() {
 	}
