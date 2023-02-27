@@ -1,12 +1,15 @@
 package bean;
 
+import jakarta.persistence.Embeddable;
+
+@Embeddable
 public class Endereco {
 	
 	private String pes_logradouro;
-	private int numero;
-	private String complemento;
-	private String bairro;
-	private String cidade;
+	private int pes_numero;
+	private String pes_complemento;
+	private String pes_bairro;
+	private String pes_cidade;
 	
 	public Endereco() {
 		super();
@@ -21,35 +24,35 @@ public class Endereco {
 	}
 
 	public int getNumero() {
-		return numero;
+		return pes_numero;
 	}
 
 	public void setNumero(int numero) {
-		this.numero = numero;
+		this.pes_numero = numero;
 	}
 
 	public String getComplemento() {
-		return complemento;
+		return pes_complemento;
 	}
 
 	public void setComplemento(String complemento) {
-		this.complemento = complemento;
+		this.pes_complemento = complemento;
 	}
 
 	public String getBairro() {
-		return bairro;
+		return pes_bairro;
 	}
 
 	public void setBairro(String bairro) {
-		this.bairro = bairro;
+		this.pes_bairro = bairro;
 	}
 
 	public String getCidade() {
-		return cidade;
+		return pes_cidade;
 	}
 
 	public void setCidade(String cidade) {
-		this.cidade = cidade;
+		this.pes_cidade = cidade;
 	}
 	
 	

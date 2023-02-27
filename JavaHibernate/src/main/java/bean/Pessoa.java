@@ -25,6 +25,8 @@ public class Pessoa {
 	@Column
 	private String  pes_cpf;
 	
+	private Endereco pes_endereco;
+	
 	
 	
 	public Pessoa() {
@@ -113,6 +115,18 @@ public class Pessoa {
 
 	public void setPes_cpf(String pes_cpf) {
 		this.pes_cpf = pes_cpf;
+	}
+
+
+
+	public Endereco getPes_endereco() {
+		return pes_endereco;
+	}
+
+
+
+	public void setPes_endereco(Endereco pes_endereco) {
+		this.pes_endereco = pes_endereco;
 	}
 	
 
