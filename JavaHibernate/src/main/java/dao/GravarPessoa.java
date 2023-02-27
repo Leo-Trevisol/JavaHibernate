@@ -19,7 +19,7 @@ public class GravarPessoa {
 		Pessoa pessoa = new Pessoa();
 		
 		pessoa.setPes_nome("Leozin");
-		pessoa.setPes_codigo(2);
+	//	pessoa.setPes_codigo();
 		pessoa.setPes_email("Leozin@gmail.com");
 		pessoa.setPes_sexo('m');
 		pessoa.setPes_idade(15);
