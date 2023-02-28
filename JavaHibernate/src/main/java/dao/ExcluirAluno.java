@@ -8,6 +8,7 @@ import org.hibernate.Transaction;
 
 import bean.Aluno;
 import conexao.ConexaoBD;
+import conexao.HibernateUtil;
 
 public class ExcluirAluno {
 
@@ -16,9 +17,12 @@ public class ExcluirAluno {
 
 		Transaction transaction = null;
 		try {
-			Session session = ConexaoBD.getSessionFactory().openSession();
-			transaction = (Transaction) session.beginTransaction();
+		//	Session session = ConexaoBD.getSessionFactory().openSession();
 			
+			
+			Session session = HibernateUtil.getSession();
+			
+			transaction = (Transaction) session.beginTransaction();
 			
 			Aluno aluno = new Aluno();
 			aluno.setAlu_codigo(2);

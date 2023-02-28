@@ -8,16 +8,20 @@ import org.hibernate.Transaction;
 
 import bean.Aluno;
 import conexao.ConexaoBD;
+import conexao.HibernateUtil;
 
 public class ListarAlunos {
 
 	@SuppressWarnings("deprecation")
 	public static void main(String[] args) {
 
-		Transaction transaction = null;
+		//Transaction transaction = null;
 		try {
-			Session session = ConexaoBD.getSessionFactory().openSession();
-			transaction = (Transaction) session.beginTransaction();
+			//Session session = ConexaoBD.getSessionFactory().openSession();
+			
+			Session session = (Session) HibernateUtil.getSession();
+			
+			//transaction = (Transaction) session.beginTransaction();
 			
 			List<Aluno> lstAlunos = new ArrayList<>();
 			lstAlunos = session.createQuery("From Aluno order by alu_nome").list();
