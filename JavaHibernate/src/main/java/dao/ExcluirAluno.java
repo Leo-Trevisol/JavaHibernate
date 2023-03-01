@@ -14,22 +14,12 @@ public class ExcluirAluno {
 
 	@SuppressWarnings("deprecation")
 	public static void main(String[] args) {
-
-		Transaction transaction = null;
 		try {
-		//	Session session = ConexaoBD.getSessionFactory().openSession();
-			
-			
-			Session session = HibernateUtil.getSession();
-			
-			transaction = (Transaction) session.beginTransaction();
-			
 			Aluno aluno = new Aluno();
-			aluno.setAlu_codigo(2);
-			 session.remove(aluno);
-			 transaction.commit();
+			aluno.setAlu_codigo(3);
 			
-			session.clear();
+			AlunoDao2 alunodao = new AlunoDao2();
+			alunodao.excluirAluno(aluno);
 
 		} catch (Exception e) {
 			System.out.println("Erro ao excluir aluno: " + e.getMessage());

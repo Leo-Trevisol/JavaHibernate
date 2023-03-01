@@ -17,14 +17,12 @@ public class ListarAlunos {
 
 		//Transaction transaction = null;
 		try {
-			//Session session = ConexaoBD.getSessionFactory().openSession();
 			
-			Session session = (Session) HibernateUtil.getSession();
-			
-			//transaction = (Transaction) session.beginTransaction();
+			AlunoDao2 alunodao = new AlunoDao2();
 			
 			List<Aluno> lstAlunos = new ArrayList<>();
-			lstAlunos = session.createQuery("From Aluno order by alu_nome").list();
+			
+			lstAlunos = alunodao.todosAlunos();
 			
 			int sizeList = lstAlunos.size();
 			
@@ -33,14 +31,6 @@ public class ListarAlunos {
 				System.out.println(aluno.toString() );
 			}
 			
-			Aluno novo = (Aluno) session.get(Aluno.class, 1 );
-			String novonome = novo.getAlu_nome();
-			System.out.println("Nova maneira de pegar dados: " + novonome);
-			
-			
-			
-
-			session.clear();
 
 		} catch (Exception e) {
 			System.out.println("Erro ao buscar aluno: " + e.getMessage());

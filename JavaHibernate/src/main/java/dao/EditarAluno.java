@@ -10,10 +10,7 @@ public class EditarAluno {
 
 	public static void main(String[] args) {
 		
-		Transaction transaction = null;
-    	try {
-    		Session session = ConexaoBD.getSessionFactory().openSession();
-    		transaction = (Transaction) session.beginTransaction();
+		try {
     		
 		Aluno aluno = new Aluno();
 		aluno.setAlu_codigo(1);
@@ -22,10 +19,8 @@ public class EditarAluno {
 		aluno.setAlu_cidade("Caxias do sul");
 		aluno.setAlu_curso("HibernateParte2");
 		
-		 session.update(aluno);
-		 transaction.commit();
-		
-		session.clear();
+		AlunoDao2 alunodao = new AlunoDao2();
+		alunodao.atualizaAluno(aluno);
 		
 	}catch(Exception e) {
 		System.out.println("Erro ao editar aluno: " + e.getMessage());
