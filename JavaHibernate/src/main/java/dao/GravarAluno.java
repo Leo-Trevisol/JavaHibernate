@@ -14,32 +14,18 @@ import conexao.ConexaoBD;
 public class GravarAluno {
 	
 	public static void main(String[] args) {
-		
-			Transaction transaction = null;
-	    	try {
-	    		Session session = ConexaoBD.getSessionFactory().openSession();
-	    		transaction = (Transaction) session.beginTransaction();
-	    		
+		try {
 			Aluno aluno = new Aluno();
 		//	aluno.setAlu_codigo(2);
-			aluno.setAlu_nome("Leozi1n");
-			aluno.setAlu_fone("5498401000");
-			aluno.setAlu_cidade("Caxi1as");
-			aluno.setAlu_curso("Hibern1ate");
+			aluno.setAlu_nome("1111");
+			aluno.setAlu_fone("1111");
+			aluno.setAlu_cidade("111");
+			aluno.setAlu_curso("111");
 			
-			Set <String> tel = new HashSet<String>();
-			tel.add("000");
-			tel.add("111");
-			tel.add("222");
-			//aluno.setTelefones_aluno(tel);
+			AlunoDao2 alunodao = new AlunoDao2();
 			
+			alunodao.insereAluno(aluno);
 			
-			 session.persist(aluno);
-	            
-	          
-			 transaction.commit();
-			
-			session.clear();
 			
 		}catch(Exception e) {
 			System.out.println("Erro ao cadastrar aluno: " + e.getMessage());
