@@ -9,6 +9,7 @@ public interface InterfaceDaoGenerico {
 	public void insere();
 	public void excluir();
 	public void atualizar();
-	public List todos();
+	public void saveOrUpdate();
+	public List todos(String classe);
 
 }

@@ -131,6 +131,15 @@ public class Pessoa {
 	public void setPes_endereco(Endereco pes_endereco) {
 		this.pes_endereco = pes_endereco;
 	}
+
+
+
+	@Override
+	public String toString() {
+		return "Pessoa [pes_codigo=" + pes_codigo + ", pes_nome=" + pes_nome + ", pes_email=" + pes_email
+				+ ", pes_sexo=" + pes_sexo + ", pes_idade=" + pes_idade + ", pes_fone=" + pes_fone + ", pes_cpf="
+				+ pes_cpf + ", pes_endereco=" + pes_endereco + "]";
+	}
 	
 
 	

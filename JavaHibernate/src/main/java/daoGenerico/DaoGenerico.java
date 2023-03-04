@@ -34,7 +34,7 @@ public class DaoGenerico<Object> implements InterfaceDaoGenerico {
 	public void excluir() {
 		try {
 		transaction = session.beginTransaction();
-		session.remove(obj);
+		session.delete(obj);
 		transaction.commit();
 	}catch(Exception e) {
 		System.out.println("Deu erro ao excluir:"  + e.getMessage() + "");
@@ -45,15 +45,37 @@ public class DaoGenerico<Object> implements InterfaceDaoGenerico {
 
 	@Override
 	public void atualizar() {
-		// TODO Auto-generated method stub
+		try {
+			transaction = session.beginTransaction();
+			session.update(obj);
+			transaction.commit();
+		}catch(Exception e) {
+			System.out.println("Deu erro ao excluir:"  + e.getMessage() + "");
+			transaction.rollback();
+		}
+		
+	}
+	
+	@Override
+	public void saveOrUpdate() {
+		try {
+			transaction = session.beginTransaction();
+			session.saveOrUpdate(obj);
+			transaction.commit();
+		}catch(Exception e) {
+			System.out.println("Deu erro ao excluir:"  + e.getMessage() + "");
+			transaction.rollback();
+		}
 		
 	}
 
 	@Override
-	public List todos() {
-		// TODO Auto-generated method stub
-		return null;
+	public List todos(String classe) {
+		List lista = session.createQuery("from " + classe).list();
+		return lista;
 	}
+
+	
 	
 	
 
