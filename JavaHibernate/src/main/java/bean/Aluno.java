@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.hibernate.annotations.NamedQueries;
+import org.hibernate.annotations.NamedQuery;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -16,9 +19,21 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Table;
 
+@NamedQueries(  
+	    {  
+	        @NamedQuery(  
+	        name = "findAluno",  
+	        query = "from Aluno where alu_nome = :name"  
+	        )  
+	    }  
+	)  
+
 @Entity
 @Table(name = "alunos")
 public class Aluno implements Serializable{
+	
+
+
 	
 	
 	@Id

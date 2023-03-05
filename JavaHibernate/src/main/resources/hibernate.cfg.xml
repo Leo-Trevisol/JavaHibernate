@@ -18,6 +18,8 @@
  
         <!-- Specifying Session Context -->
         <property name="hibernate.current_session_context_class">org.hibernate.context.internal.ThreadLocalSessionContext</property>
+        
+        <property name="javax.persistence.schema-generation.database.action">none</property>
  		
  	  <mapping class="bean.Aluno"/>
  	   <mapping class="bean.Pessoa"/>

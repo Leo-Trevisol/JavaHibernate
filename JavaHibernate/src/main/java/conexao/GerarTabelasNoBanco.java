@@ -12,15 +12,15 @@ public class GerarTabelasNoBanco {
 	
 	public static void main(String[] args) {
 		
-		MetadataSources metadataSources = new MetadataSources(serviceRegistry);
-		metadataSources.addAnnotatedClass(Aluno.class);
-		metadataSources.addAnnotatedClass(Pessoa.class);
-		Metadata metadata = metadataSources.buildMetadata();
-
-		Schema schemaExport = new Schema();
-		schemaExport.setFormat(true);
-		schemaExport.setOutputFile("create.sql");
-		schemaExport.createOnly(EnumSet.of(TargetType.SCRIPT), metadata);
+//		MetadataSources metadataSources = new MetadataSources(serviceRegistry);
+//		metadataSources.addAnnotatedClass(Aluno.class);
+//		metadataSources.addAnnotatedClass(Pessoa.class);
+//		Metadata metadata = metadataSources.buildMetadata();
+//
+//		Schema schemaExport = new Schema();
+//		schemaExport.setFormat(true);
+//		schemaExport.setOutputFile("create.sql");
+//		schemaExport.createOnly(EnumSet.of(TargetType.SCRIPT), metadata);
 	}
 	
 	

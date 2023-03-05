@@ -1,28 +1,31 @@
-package dao;
+package consultas;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Session;
-import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 import bean.Aluno;
-import conexao.ConexaoBD;
 import conexao.HibernateUtil;
+import dao.AlunoDao2;
 
-public class ListarAlunos {
-
+public class HqlQueryParametros {
+	
 	@SuppressWarnings("deprecation")
 	public static void main(String[] args) {
 
 		//Transaction transaction = null;
 		try {
 			
-			AlunoDao2 alunodao = new AlunoDao2();
+			Session session = HibernateUtil.getSession();
+//			Query query = session.createQuery("from Aluno where alu_nome = :nome");
+//			query.setParameter("nome", "Leo");
 			
-			List<Aluno> lstAlunos = new ArrayList<>();
+			Query query = session.getNamedQuery("findAluno");
+			 query.setParameter("name","Leo");   
 			
-			lstAlunos = alunodao.todosAlunos();
+			List <Aluno> lstAlunos = query.list();
 			
 			int sizeList = lstAlunos.size();
 			
@@ -37,5 +40,6 @@ public class ListarAlunos {
 		}
 
 	}
+
 
 }
