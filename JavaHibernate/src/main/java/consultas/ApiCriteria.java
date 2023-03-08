@@ -7,8 +7,9 @@ import org.hibernate.query.Query;
 
 import bean.Aluno;
 import conexao.HibernateUtil;
+import jakarta.persistence.criteria.CriteriaBuilder;
 
-public class ApiCriteria {
+public class ApiCriteria  {
 	
 	@SuppressWarnings("deprecation")
 	public static void main(String[] args) {
@@ -17,7 +18,9 @@ public class ApiCriteria {
 		try {
 			
 			Session session = HibernateUtil.getSession();
-			Criteria crit = session.createCriteria(Aluno.class);
+			
+			
+		//	Criteria crit = session.createCriteria(Aluno.class);
 			
 			
 			List <Aluno> lstAlunos = crit.list();
