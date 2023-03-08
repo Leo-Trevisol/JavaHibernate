@@ -2,6 +2,7 @@ package consultas;
 
 import org.hibernate.Session;
 
+import bean.Aluno;
 import conexao.HibernateUtil;
 
 public class QueryByExample {
@@ -14,8 +15,12 @@ public class QueryByExample {
 			
 			Session session = HibernateUtil.getSession();
 			
+//			Aluno aluno = new Aluno();
+//			aluno.setAlu_cidade("Caxias");
 			
-		//			Criteria crit = session.createCriteria(Aluno.class);
+			
+		//Criteria crit = session.createCriteria(Aluno.class);
+		//crit.add(Example.create(aluno));
 
 			
 //			List <Aluno> lstAlunos = crit.list();
