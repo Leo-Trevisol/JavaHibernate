@@ -15,6 +15,7 @@ public class Endereco {
 	@Column(name = "desc_endereco")
 	private String desc_endereco;
 	
+	
 	public int getId_endereco() {
 		return id_endereco;
 	}

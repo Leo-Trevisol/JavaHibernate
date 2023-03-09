@@ -3,6 +3,7 @@ package onetoone_unidirecional;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -14,6 +15,9 @@ public class Pessoa {
 	private int id_pessoa;
 	@Column(name = "nome_pessoa")
 	private String nome_pessoa;
+	
+	@OneToOne
+	private Endereco endereco;
 	
 	public int getId_pessoa() {
 		return id_pessoa;
@@ -27,6 +31,13 @@ public class Pessoa {
 	public void setNome_pessoa(String nome_pessoa) {
 		this.nome_pessoa = nome_pessoa;
 	}
+	public Endereco getEndereco() {
+		return endereco;
+	}
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
+	}
+	
 	
 	
 

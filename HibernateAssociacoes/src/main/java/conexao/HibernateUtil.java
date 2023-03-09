@@ -1,4 +1,4 @@
-package onetoone_unidirecional;
+package conexao;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
