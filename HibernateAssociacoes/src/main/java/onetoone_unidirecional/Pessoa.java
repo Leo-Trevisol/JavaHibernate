@@ -1,5 +1,6 @@
 package onetoone_unidirecional;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -16,7 +17,7 @@ public class Pessoa {
 	@Column(name = "nome_pessoa")
 	private String nome_pessoa;
 	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	private Endereco endereco;
 	
 	public int getId_pessoa() {

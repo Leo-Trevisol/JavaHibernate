@@ -13,11 +13,11 @@ public class ListaPessoaEndereco {
 		Session session = ConexaoBD.getSessionFactory().openSession();
 		transaction = (Transaction) session.beginTransaction();
 		
-		Pessoa pessoa = (Pessoa) session.get(Pessoa.class, 1);
+		Endereco end = (Endereco) session.get(Endereco.class, 1);
 		
-		System.out.println("Codigo pessoa:" + pessoa.getId_pessoa());
-		System.out.println("Nome pessoa:" + pessoa.getNome_pessoa());
-		System.out.println("Endereco:" + pessoa.getEndereco().getDesc_endereco());
+		System.out.println("Codigo pessoa:" + end.getId_endereco());
+		System.out.println("Nome pessoa:" + end.getDesc_endereco());
+		//System.out.println("Endereco:" + end.getPessoa().getNome_pessoa());
 		
 //		Endereco end = (Endereco) session.get(Endereco.class, 1);
 //		
