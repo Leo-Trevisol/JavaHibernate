@@ -3,7 +3,9 @@ package onetoone_unidirecional;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
@@ -17,7 +19,8 @@ public class Pessoa {
 	@Column(name = "nome_pessoa")
 	private String nome_pessoa;
 	
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(targetEntity = Endereco.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name = "id_endereco", referencedColumnName = "id_endereco")
 	private Endereco endereco;
 	
 	public int getId_pessoa() {
