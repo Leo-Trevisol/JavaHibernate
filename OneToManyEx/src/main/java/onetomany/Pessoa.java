@@ -40,6 +40,16 @@ public class Pessoa {
 	public void setTelefonePessoa(List<TelefonePessoa> telefonePessoa) {
 		this.telefonePessoa = telefonePessoa;
 	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+	
+	
 	
 	
 
