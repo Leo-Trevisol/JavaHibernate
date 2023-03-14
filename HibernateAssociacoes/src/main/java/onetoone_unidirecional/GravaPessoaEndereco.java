@@ -1,9 +1,13 @@
 package onetoone_unidirecional;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import conexao.ConexaoBD;
+
 
 public class GravaPessoaEndereco {
 	
@@ -14,22 +18,25 @@ public class GravaPessoaEndereco {
     		Session session = ConexaoBD.getSessionFactory().openSession();
     		transaction = (Transaction) session.beginTransaction();
     		
-		Pessoa pessoa = new Pessoa();
-		
-		pessoa.setId_pessoa(1);
-		pessoa.setNome_pessoa("Leozin");
-		session.save(pessoa);
-		
-		Endereco end = new Endereco();
-		
-		end.setId_endereco(pessoa.getId_pessoa());
-		end.setDesc_endereco("Vila amelia");
-		session.save(end);
-	
-		
-		 transaction.commit();
-		
-		session.clear();
+    		Pessoa pessoa = new Pessoa();
+			pessoa.setId(2);
+			pessoa.setNome("leozin");
+			
+			List<Endereco> endereco = new ArrayList<>();
+			Endereco end = new Endereco();
+			end.setDescricao("55555");
+			end.setPessoa(pessoa);
+			endereco.add(end);
+			
+		//	pessoa.setTelefonePessoa(telefones);
+			
+			Endereco ende = new Endereco();
+			ende.setId(pessoa.getId());
+			ende.setPessoa(pessoa);
+			
+		//	session.delete(tele);
+			session.saveOrUpdate(pessoa);
+			transaction.commit();
 		
 	}catch(Exception e) {
 		System.out.println("Erro ao cadastrar pessoa: " + e.getMessage());

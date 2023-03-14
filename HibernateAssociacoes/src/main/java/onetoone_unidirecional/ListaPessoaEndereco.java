@@ -15,9 +15,9 @@ public class ListaPessoaEndereco {
 		
 		Pessoa pessoa = (Pessoa) session.get(Pessoa.class, 1);
 		
-		System.out.println("Codigo pessoa:" + pessoa.getId_pessoa());
-		System.out.println("Nome pessoa:" + pessoa.getNome_pessoa());
-		System.out.println("Endereco:" + pessoa.getEndereco().getDesc_endereco());
+//		System.out.println("Codigo pessoa:" + pessoa.getId_pessoa());
+//		System.out.println("Nome pessoa:" + pessoa.getNome_pessoa());
+//		System.out.println("Endereco:" + pessoa.getEndereco().getDesc_endereco());
 		
 //		Endereco end = (Endereco) session.get(Endereco.class, 1);
 //		

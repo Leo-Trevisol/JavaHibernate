@@ -1,11 +1,19 @@
 package onetoone_unidirecional;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.hibernate.annotations.Cascade;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
@@ -14,33 +22,42 @@ import jakarta.persistence.Table;
 public class Pessoa {
 	
 	@Id
-	@Column(name = "id_pessoa")
-	private int id_pessoa;
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private int id;
+	
 	@Column(name = "nome_pessoa")
-	private String nome_pessoa;
+	private String nome;
 	
-	@OneToOne(targetEntity = Endereco.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name = "id_endereco", referencedColumnName = "id_endereco")
-	private Endereco endereco;
-	
-	public int getId_pessoa() {
-		return id_pessoa;
+	@OneToMany(mappedBy= "pessoa", orphanRemoval=true)
+	private List<Endereco> endereco = new ArrayList<>();
+
+	public int getId() {
+		return id;
 	}
-	public void setId_pessoa(int id_pessoa) {
-		this.id_pessoa = id_pessoa;
+
+	public void setId(int id) {
+		this.id = id;
 	}
-	public String getNome_pessoa() {
-		return nome_pessoa;
+
+	public String getNome() {
+		return nome;
 	}
-	public void setNome_pessoa(String nome_pessoa) {
-		this.nome_pessoa = nome_pessoa;
+
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
-	public Endereco getEndereco() {
+
+	public List<Endereco> getEndereco() {
 		return endereco;
 	}
-	public void setEndereco(Endereco endereco) {
+
+	public void setEndereco(List<Endereco> endereco) {
 		this.endereco = endereco;
 	}
+
+	
+	
+
 	
 	
 	
