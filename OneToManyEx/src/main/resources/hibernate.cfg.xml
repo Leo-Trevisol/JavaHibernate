@@ -10,7 +10,7 @@
  
         <!-- Database Connection Settings -->
         <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>  <!-- DEFININDO O BANCO QUE VOU UTILIZAR -->
-        <property name="hibernate.connection.url">jdbc:mysql://127.0.0.1:3307/onetoone</property>
+        <property name="hibernate.connection.url">jdbc:mysql://127.0.0.1:3307/onetomany</property>
         <property name="hibernate.connection.username">root</property>
         <property name="hibernate.connection.password">leo123</property>
         <property name="show_sql">true</property>
@@ -23,6 +23,8 @@
         
         <mapping class="onetomany.Pessoa"/>
  	   <mapping class="onetomany.TelefonePessoa"/>
+ 	    	   <mapping class="onetomany.Projeto"/>
+ 	   
  		
         <!-- Mapping With Model Class Containing Annotations -->
     </session-factory>

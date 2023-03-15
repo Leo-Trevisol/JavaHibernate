@@ -25,7 +25,7 @@ public class ConsultaCarro {
 			
 			ChipSeguranca chip2 = (ChipSeguranca) session.find(ChipSeguranca.class,4);
 			System.out.println(chip2);
-			System.out.println(chip.getCarro());
+			System.out.println(chip.getCarro().toString());
 			
 			
 		

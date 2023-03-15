@@ -18,9 +18,7 @@ public class Main {
 			transaction = (Transaction) session.beginTransaction();
 			
 			Pessoa pessoa = new Pessoa();
-		//	pessoa.setNome("leozin");
-			
-			pessoa.setId(2);
+			pessoa.setNome("leozin");
 			
 			List<TelefonePessoa> telefones = new ArrayList<>();
 			TelefonePessoa tp = new TelefonePessoa();
@@ -28,14 +26,25 @@ public class Main {
 			tp.setPessoa(pessoa);
 			telefones.add(tp);
 			
-		//	pessoa.setTelefonePessoa(telefones);
+			pessoa.setTelefonePessoa(telefones);
 			
 			TelefonePessoa tele = new TelefonePessoa();
 			tele.setId(pessoa.getId());
 			tele.setPessoa(pessoa);
 			
+			List<Projeto> proj = new ArrayList<>();
+			Projeto projj = new Projeto();
+			projj.setNome("proj1");
+			List<Pessoa> psList = new ArrayList<Pessoa>();
+			psList.add(pessoa);
+			projj.setPessoas(psList);
+			
+			proj.add(projj);
+			
+			pessoa.setProjetos(proj);
+			
 		//	session.delete(tele);
-			session.delete(pessoa);
+			session.persist(pessoa);
 			transaction.commit();
 		
 	}catch(Exception e) {
