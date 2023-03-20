@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+ 
+<hibernate-configuration>
+    <session-factory>
+        <!-- SQL Dialect -->
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+ 
+        <!-- Database Connection Settings -->
+        <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>  <!-- DEFININDO O BANCO QUE VOU UTILIZAR -->
+        <property name="hibernate.connection.url">jdbc:mysql://127.0.0.1:3307/mapeamentounidirecional</property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.connection.password">leo123</property>
+        <property name="show_sql">true</property>
+         <property name="format_sql">true</property>
+ 
+        <!-- Specifying Session Context -->
+        <property name="hibernate.current_session_context_class">org.hibernate.context.internal.ThreadLocalSessionContext</property>
+        
+        <property name="javax.persistence.schema-generation.database.action">none</property>
+        
+        <mapping class="manytomany_uni.Pessoa"/>
+        <mapping class="manytomany_uni.Notebook"/>
+ 		
+        <!-- Mapping With Model Class Containing Annotations -->
+    </session-factory>
+</hibernate-configuration>
