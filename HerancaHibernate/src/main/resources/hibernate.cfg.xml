@@ -19,11 +19,10 @@
         <!-- Specifying Session Context -->
         <property name="hibernate.current_session_context_class">org.hibernate.context.internal.ThreadLocalSessionContext</property>
         
-        <property name="javax.persistence.schema-generation.database.action">drop-and-create</property>
-        
-        <mapping class="heranca.Pessoa"/>
- 	   <mapping class="heranca.PessoaFisica"/>
- 	     <mapping class="heranca.PessoaJuridica"/>
+        <property name="jakarta.persistence.schema-generation.database.action">none</property>
+         <mapping class="heranca.Pessoa"/>
+        <mapping class="heranca.PessoaFisica"/>
+ 	  <mapping class="heranca.PessoaJuridica"/>
  		
         <!-- Mapping With Model Class Containing Annotations -->
     </session-factory>

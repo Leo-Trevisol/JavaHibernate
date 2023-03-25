@@ -1,7 +1,7 @@
 package heranca;
 
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -12,13 +12,13 @@ import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "pessoa")
 public class Pessoa {
 	
 	@Id
-	@SequenceGenerator(name="seq_pessoa", sequenceName="seq_pessoa_id", allocationSize = 1)
-	@GeneratedValue(generator = "seq_pessoa", strategy = GenerationType.SEQUENCE)
+	 @SequenceGenerator(name = "seq_pessoa", sequenceName = "seq_pessoa_id", allocationSize = 1)
+    @GeneratedValue(generator = "seq_pessoa", strategy = GenerationType.SEQUENCE)
 	private Integer id;
 	 @Column(name = "nome", length = 50, nullable = false)
 	private String nome;

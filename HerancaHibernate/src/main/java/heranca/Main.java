@@ -24,23 +24,25 @@ public class Main {
     		pess.setRg("555555");
     		pess.setCpf("222222");
     		pess.setNascimento(Calendar.getInstance());
-    		pess.setNomeusuario("leoUsuario");
-    		pess.setSenhausuario("leo123");
+    		pess.setNomeusuario("usuario 3");
+    		pess.setSenhausuario("111111");
     		
     		session.persist(pess);
-    		transaction.commit();
-    	
+    		
     		
     		PessoaJuridica pessj = new PessoaJuridica();
     		
-    		pessj.setNome("leozin");
-    		pessj.setEmail("leozin@gmail.com");
-    		pessj.setTelefone("54 984081674");
-    		pessj.setEmpresa("NL");
-    		pessj.setCargo("adm");
+    		pessj.setNome("leo Juridico");
+    		pessj.setEmail("leo Juridico");
+    		pessj.setTelefone("51515151");
+    		pessj.setEmpresa("Empresa do leo");
+    		pessj.setCargo("Gerente");
+    		
     		
     		session.persist(pessj);
     		transaction.commit();
+    		
+    	
     		
     		
     	
