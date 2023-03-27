@@ -42,10 +42,6 @@ public class Main {
     		session.persist(pessj);
     		transaction.commit();
     		
-    	
-    		
-    		
-    	
     		
     	}catch(Exception e) {
     		System.out.println("Erro ao cadastrar pessoa: " + e.getMessage());
