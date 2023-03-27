@@ -1,8 +1,8 @@
 package dao;
 
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -28,7 +28,7 @@ public class GravarPessoa2 {
     		pess.setDataCadastro(new Date());
     		pess.setDataNascimento(new Date());
     		
-    		Set<String> telefones = new HashSet<>();
+    		List<String> telefones = new ArrayList<>();
     		
     		telefones.add("15151515");
     		telefones.add("262626200");

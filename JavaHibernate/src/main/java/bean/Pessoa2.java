@@ -1,7 +1,10 @@
 package bean;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
+
+import org.hibernate.annotations.IndexColumn;
 
 import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
@@ -39,10 +42,17 @@ public class Pessoa2 {
 	@Temporal(TemporalType.DATE)
 	private Date dataNascimento;
 	
-	@ElementCollection
-	@CollectionTable(name = "telefones_pessoa", joinColumns= @JoinColumn(name= "pessoa_id"))
-	@Column(name="tel_numero")
-	private Set<String> telefones;
+	//Colecao usando SET:
+	
+//	@ElementCollection
+//	@CollectionTable(name = "telefones_pessoa", joinColumns= @JoinColumn(name= "pessoa_id"))
+//	@Column(name="tel_numero")
+//	private Set<String> telefones;
+	
+	//Colecao usando LIST:
+	
+	@IndexColumn(name="idPessoa")
+	private List<String> telefones;
 
 	public Integer getId() {
 		return id;
@@ -100,13 +110,21 @@ public class Pessoa2 {
 		this.dataNascimento = dataNascimento;
 	}
 
-	public Set<String> getTelefones() {
+	public List<String> getTelefones() {
 		return telefones;
 	}
 
-	public void setTelefones(Set<String> telefones) {
+	public void setTelefones(List<String> telefones) {
 		this.telefones = telefones;
 	}
+
+//	public Set<String> getTelefones() {
+//		return telefones;
+//	}
+//
+//	public void setTelefones(Set<String> telefones) {
+//		this.telefones = telefones;
+//	}
 	
 	
 
