@@ -2,6 +2,7 @@ package dao;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -28,13 +29,13 @@ public class GravarPessoa2 {
     		pess.setDataCadastro(new Date());
     		pess.setDataNascimento(new Date());
     		
-    		List<String> telefones = new ArrayList<>();
+    		pess.setTelefones(new HashMap<String, String>());
+    		pess.getTelefones().put("1", "984081674");
+    		pess.getTelefones().put("2", "991763517");
+    		pess.getTelefones().put("3", "991763517");
+
+
     		
-    		telefones.add("15151515");
-    		telefones.add("262626200");
-    		telefones.add("787878");
-    		
-    		pess.setTelefones(telefones);
     		
     		session.persist(pess);
     		transaction.commit();

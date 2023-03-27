@@ -1,7 +1,9 @@
 package bean;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.hibernate.annotations.IndexColumn;
@@ -16,6 +18,7 @@ import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.MapKey;
 
 
 
@@ -44,17 +47,23 @@ public class Pessoa2 {
 	
 	//Colecao usando SET:
 	
-//	@ElementCollection
-//	@CollectionTable(name = "telefones_pessoa", joinColumns= @JoinColumn(name= "pessoa_id"))
+	@ElementCollection
+	@CollectionTable(name = "telefones_pessoa", joinColumns= @JoinColumn(name= "pessoa_id"))
 //	@Column(name="tel_numero")
 //	private Set<String> telefones;
 	
 	//Colecao usando LIST:
 	
-	@IndexColumn(name="idPessoa")
-	private List<String> telefones;
-
-	public Integer getId() {
+//	@IndexColumn(name="idPessoa")
+//	private List<String> telefones;
+	
+	//Colecao com MAP:
+	
+	@MapKey(name="mapkey")
+	private Map<String, String> telefones = new HashMap<String, String>();;
+	
+	
+	public Integer getId() {	
 		return id;
 	}
 
@@ -110,13 +119,21 @@ public class Pessoa2 {
 		this.dataNascimento = dataNascimento;
 	}
 
-	public List<String> getTelefones() {
+	public Map<String, String> getTelefones() {
 		return telefones;
 	}
 
-	public void setTelefones(List<String> telefones) {
+	public void setTelefones(Map<String, String> telefones) {
 		this.telefones = telefones;
 	}
+
+//	public List<String> getTelefones() {
+//		return telefones;
+//	}
+//
+//	public void setTelefones(List<String> telefones) {
+//		this.telefones = telefones;
+//	}
 
 //	public Set<String> getTelefones() {
 //		return telefones;
