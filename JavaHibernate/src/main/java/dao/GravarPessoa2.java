@@ -29,13 +29,11 @@ public class GravarPessoa2 {
     		pess.setDataCadastro(new Date());
     		pess.setDataNascimento(new Date());
     		
-    		pess.setTelefones(new HashMap<String, String>());
-    		pess.getTelefones().put("1", "984081674");
-    		pess.getTelefones().put("2", "991763517");
-    		pess.getTelefones().put("3", "991763517");
+//    		pess.setTelefones(new HashMap<String, String>());
+//    		pess.getTelefones().put("1", "984081674");
+//    		pess.getTelefones().put("2", "991763517");
+//    		pess.getTelefones().put("3", "991763517");
 
-
-    		
     		
     		session.persist(pess);
     		transaction.commit();

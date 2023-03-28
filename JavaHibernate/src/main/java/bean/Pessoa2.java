@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.hibernate.annotations.CollectionId;
 import org.hibernate.annotations.IndexColumn;
 
 import jakarta.persistence.CollectionTable;
@@ -59,8 +60,11 @@ public class Pessoa2 {
 	
 	//Colecao com MAP:
 	
-	@MapKey(name="mapkey")
-	private Map<String, String> telefones = new HashMap<String, String>();;
+//	@MapKeycolumns=(@Column(name="mapkey")))
+//	private Map<String, String> telefones = new HashMap<String, String>();;
+//	
+
+	
 	
 	
 	public Integer getId() {	
@@ -119,13 +123,13 @@ public class Pessoa2 {
 		this.dataNascimento = dataNascimento;
 	}
 
-	public Map<String, String> getTelefones() {
-		return telefones;
-	}
-
-	public void setTelefones(Map<String, String> telefones) {
-		this.telefones = telefones;
-	}
+//	public Map<String, String> getTelefones() {
+//		return telefones;
+//	}
+//
+//	public void setTelefones(Map<String, String> telefones) {
+//		this.telefones = telefones;
+//	}
 
 //	public List<String> getTelefones() {
 //		return telefones;
