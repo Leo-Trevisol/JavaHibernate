@@ -19,11 +19,11 @@
         <!-- Specifying Session Context -->
         <property name="hibernate.current_session_context_class">org.hibernate.context.internal.ThreadLocalSessionContext</property>
         
-        <property name="javax.persistence.schema-generation.database.action">drop-and-create</property>
+        <property name="javax.persistence.schema-generation.database.action">none</property>
         
 
- 	    <mapping class="anotacoes_associacoes.Pessoa"/>
- 	   <mapping class="anotacoes_associacoes.Endereco"/>
+ 	    <mapping class="anotacoes_associacoes.onetomany.Pessoa"/>
+ 	   <mapping class="anotacoes_associacoes.onetomany.Endereco"/>
  		
  		
         <!-- Mapping With Model Class Containing Annotations -->

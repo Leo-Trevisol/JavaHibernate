@@ -1,4 +1,4 @@
-package anotacoes_associacoes;
+package anotacoes_associacoes.onetomany;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;

@@ -1,12 +1,17 @@
-package anotacoes_associacoes;
+package anotacoes_associacoes.onetomany;
 
 
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.ForeignKey;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -19,13 +24,15 @@ public class Endereco {
 	
 	@Id
 	@Column(name = "id")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	@Column(name = "descricao")
 	private String descricao;
 	
-	@OneToOne
-	@JoinColumn(name="idPessoa")
-	@Cascade(CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="idPessoa", updatable = true, insertable = true)
+	@Fetch(FetchMode.JOIN)
+	@Cascade(CascadeType.SAVE_UPDATE)
 	private Pessoa pessoa;
 	
 	public int getId() {

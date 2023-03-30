@@ -1,4 +1,4 @@
-package anotacoes_associacoes;
+package anotacoes_associacoes.onetoone;
 
 import java.util.ArrayList;
 import java.util.List;
