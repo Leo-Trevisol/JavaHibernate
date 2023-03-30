@@ -1,6 +1,8 @@
 package anotacoes_associacoes;
 
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 import org.hibernate.annotations.ForeignKey;
 
 import jakarta.persistence.Column;
@@ -21,6 +23,11 @@ public class Endereco {
 	@Column(name = "descricao")
 	private String descricao;
 	
+	@OneToOne
+	@JoinColumn(name="idPessoa")
+	@Cascade(CascadeType.ALL)
+	private Pessoa pessoa;
+	
 	public int getId() {
 		return id;
 	}
@@ -36,6 +43,16 @@ public class Endereco {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
+
+	public Pessoa getPessoa() {
+		return pessoa;
+	}
+
+	public void setPessoa(Pessoa pessoa) {
+		this.pessoa = pessoa;
+	}
+	
+	
 
 	
 	

@@ -29,7 +29,7 @@ public class Pessoa {
 	@Column(name = "nome_pessoa")
 	private String nome;
 	
-	@OneToOne
+	@OneToOne(targetEntity = Endereco.class)
 	@JoinColumn(name="id_endereco_pessoa")
 	@Cascade(CascadeType.ALL)
 	private Endereco endereco;

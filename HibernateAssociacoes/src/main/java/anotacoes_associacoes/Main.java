@@ -21,13 +21,15 @@ public class Main {
     		Endereco ende = new Endereco();
 			ende.setId(2);
 			ende.setDescricao("casa minha");
-		//	session.save(ende);
+			
 
     		
     		Pessoa pessoa = new Pessoa();
 			pessoa.setId(2);
 			pessoa.setNome("leozin");
 			pessoa.setEndereco(ende);
+			
+			ende.setPessoa(pessoa);
 			session.save(pessoa);
 			
 			transaction.commit();
