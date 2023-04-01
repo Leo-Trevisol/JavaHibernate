@@ -18,6 +18,7 @@ public class consulta_query_encapsulada {
 			transaction = (Transaction) session.beginTransaction();
 			
 			Query listagem_query = session.getNamedQuery("pessoa");
+			listagem_query.setParameter("nome", "leozin");
 			
 			List<Pessoa> lstPessoas = listagem_query.list();
 			

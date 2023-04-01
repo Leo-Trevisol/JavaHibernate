@@ -25,7 +25,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "pessoa")
-@NamedQuery(name = "pessoa", query = "from Pessoa")
+@NamedQuery(name = "pessoa", query = "from Pessoa where nome = :nome")
 public class Pessoa {
 	
 	@Id
