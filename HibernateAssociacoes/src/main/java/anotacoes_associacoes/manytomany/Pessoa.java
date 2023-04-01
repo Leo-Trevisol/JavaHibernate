@@ -7,6 +7,7 @@ import java.util.List;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 import org.hibernate.annotations.CollectionId;
+import org.hibernate.annotations.NamedQuery;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -24,6 +25,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "pessoa")
+@NamedQuery(name = "pessoa", query = "from Pessoa")
 public class Pessoa {
 	
 	@Id
