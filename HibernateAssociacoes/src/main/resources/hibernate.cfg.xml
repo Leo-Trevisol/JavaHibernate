@@ -22,10 +22,10 @@
         <property name="javax.persistence.schema-generation.database.action">none</property>
         
 
- 	    <mapping class="anotacoes_associacoes.manytomany.Pessoa"/>
- 	   <mapping class="anotacoes_associacoes.manytomany.Endereco"/>
- 		
- 		
+ 	    <mapping class="heranca.Pessoa"/>
+ 	    <mapping class="heranca.PessoaFisica"/>
+ 		<mapping class="heranca.PessoaJuridica"/>
+
         <!-- Mapping With Model Class Containing Annotations -->
     </session-factory>
 </hibernate-configuration>
