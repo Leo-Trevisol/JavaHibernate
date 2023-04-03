@@ -4,13 +4,14 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 import jakarta.persistence.PrimaryKeyJoinColumn;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name= "pessoa_juridica")
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@PrimaryKeyJoinColumn(name="idPessoa")
 public class PessoaJuridica extends Pessoa{
 	
 	private String cnpj;

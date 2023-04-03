@@ -6,6 +6,7 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 import jakarta.persistence.PrimaryKeyJoinColumn;
 import jakarta.persistence.Table;
@@ -14,7 +15,7 @@ import jakarta.persistence.TemporalType;
 
 @Entity
 @Table(name = "pessoa_fisica")
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@PrimaryKeyJoinColumn(name="idPessoa")
 public class PessoaFisica extends Pessoa{
 	
 	private String cpf;
